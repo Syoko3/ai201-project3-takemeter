@@ -2,6 +2,12 @@
 
 ---
 
+## Demo Video
+
+Link: 
+
+---
+
 ## Community Choice & Reasoning
 
 
@@ -11,6 +17,7 @@
 ## Label Taxonomy
 
 | Labels | Definition of Label | Example Post #1 | Example Post #2 |
+|--------|-------------------|--------------------|--------------------|
 |  |  |  |
 |  |  |  |
 
@@ -43,17 +50,22 @@
 ## Full Evaluation Report
 
 **Model Metrics:**
+
 | Metric Class Name | Model #1 Performance | Model #2 Performance |
+|-------|----------------------|----------------------|
 |  |  |  |
 |  |  |  |
 
 **Specific Wrong Predictions & Analysis:**
+
 | Post | Model 1 Prediction & Confidence | Model 2 Prediction & Confidence | Status | Analysis | One Correct Example |
+|------|---------------------------------|---------------------------------|--------|---------------------|------------------|
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 
 **Confusion Matrix:**
+
 
 
 ---
