@@ -49,7 +49,11 @@ I would make this classifier genuinely useful by "80% recall" goal for highlight
 ---
 
 ## AI Tool Plan
+<!--- Add an AI Tool Plan section to your planning.md. This project's workflow is different from implementation projects — there's no code to generate, so your plan should cover the three places where AI tools actually help here:
+- Label stress-testing: Give the AI your label definitions and edge case description, and ask it to generate 5–10 posts that sit at the boundary between two labels. If it produces posts you can't classify cleanly, your definitions need tightening — do that now, before you annotate 200 examples.
+- Annotation assistance: Decide whether you'll use an LLM to pre-label a batch of examples before reviewing them yourself. If yes, note which tool you'll use and how you'll track which examples were pre-labeled (for disclosure in your AI usage section).
+- Failure analysis: Plan to give your list of wrong predictions to an AI tool and ask it to identify patterns before you write up your evaluation. Note what you'll look for and how you'll verify the patterns yourself. --->
 
-- **Label stress-testing:** 
-- **Annotation assistance:** 
-- **Failure analysis:** 
+- **Label stress-testing:** I will give ChatGPT my label definitions and edge case description to generate 5-10 posts that sit at the boundary between two labels. I will change the label definitions or edge case description if the generated posts are hard to classify.
+- **Annotation assistance:** I will use an LLM to pre-label a batch of 50 posts. I will use Gemini to do this and I will track which examples were pre-labeled by adding the "Model_Label" and "Human_Verified_Label" columns.
+- **Failure analysis:** After evaluating the model, I will export the posts where the model and I disagreed. I will feed the list of "wrong predictions" into Claude and ask for common patterns that led to these misclassifications. Then, I will verify these patterns to see if they reveal a flaw in my labels.
