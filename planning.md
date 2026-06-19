@@ -12,10 +12,10 @@ I chose baseball subreddits (r/baseball) because this community contains some po
 <!-- What are your 2–4 labels? Define each in a complete sentence. Include 2 example posts per label. -->
 | Labels | Definition of Label | Example Post #1 | Example Post #2 |
 |--------|-------------------------|------------------------------|------------------------------|
-| Media & Highlights | Direct video clips of gameplay or in-game events | Padres extend their lead to five with a Jackson Merrill towering 2-run shot in the 9th | The Rays take the lead and drop a 4-run 5th inning on Shohei Ohtani |
-| News & Official | Direct links to reports, signings, transactions, or injury updates from recognized media or MLB sources | [MLBTR] Braves To Select Carlos Carrasco, Jair Camargo | [Stebbins] Out in Milwaukee, the Guardians recalled Kahlil Watson from Triple-A Columbus while placing Chase DeLauter on the 10-day injured list |
-| Facts & Analysis | Structured arguments supported by specific, verifiable statistical evidence (e.g., WAR, ERA+, historical trends), including fun facts | Brett Kerry of the Angels just recorded a 5 pitch scoreless inning whilst also committing two errors | On this date in 1960, Ted Williams became the 4th member of the 500 HR club — here's what the leaderboard looked like on 6/17/1960 |
-| Discussions & Opinions | Subjective discussions, opinions, or "hot takes" | Has anyone seen an mlb sculpture that is a good likeness of its subject? | Adjustments after breaking Hamate |
+| Media & Highlights | Direct video clips of gameplay or in-game events. | Padres extend their lead to five with a Jackson Merrill towering 2-run shot in the 9th | The Rays take the lead and drop a 4-run 5th inning on Shohei Ohtani |
+| News & Official | Direct links to reports, signings, transactions, or injury updates from recognized media or MLB sources. | [MLBTR] Braves To Select Carlos Carrasco, Jair Camargo | [Stebbins] Out in Milwaukee, the Guardians recalled Kahlil Watson from Triple-A Columbus while placing Chase DeLauter on the 10-day injured list |
+| Facts & Analysis | Structured arguments supported by specific, verifiable statistical evidence (e.g., WAR, ERA+, historical trends), including fun facts. | Brett Kerry of the Angels just recorded a 5 pitch scoreless inning whilst also committing two errors | On this date in 1960, Ted Williams became the 4th member of the 500 HR club — here's what the leaderboard looked like on 6/17/1960 |
+| Discussions & Opinions | Subjective discussions, opinions, or "hot takes". | Has anyone seen an mlb sculpture that is a good likeness of its subject? | Adjustments after breaking Hamate |
 
 ---
 

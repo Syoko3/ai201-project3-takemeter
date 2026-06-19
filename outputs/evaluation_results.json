@@ -1,0 +1,13 @@
+{
+  "baseline_accuracy": 0.8056,
+  "finetuned_accuracy": 0.5,
+  "improvement": -0.3056,
+  "test_set_size": 36,
+  "label_map": {
+    "Media & Highlights": 0,
+    "News & Official": 1,
+    "Facts & Analysis": 2,
+    "Discussions & Opinions": 3
+  },
+  "model": "distilbert-base-uncased"
+}
