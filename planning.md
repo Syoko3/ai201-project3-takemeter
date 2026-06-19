@@ -32,7 +32,7 @@ I chose baseball subreddits (r/baseball) because this community contains some po
 
 ## Data Collection Plan
 <!-- Where will you collect examples? How many per label? What will you do if a label is underrepresented after 200 examples? -->
-I will collect examples from r/baseball subreddit. It will have like 120 posts on "Media & Highlights", 50 posts on "News & Official", 20 posts on "Facts & Analysis", and 10 posts on "Discussions & Opinions". If a label is underrepresented after 200 examples, I will use a target search to fill the gaps, using the keywords such as "Opinion", "Discussion", "Prediction", or "Why do you think ..." to surface subjective discourse.
+I will collect examples from r/baseball subreddit. It will have like 120 posts on "Media & Highlights", 50 posts on "News & Official", 20 posts on "Facts & Analysis", and 10 posts on "Discussions & Opinions". If a label is underrepresented after 200 examples, I will use other baseball subreddits such as r/collegebaseball and use a target search to fill the gaps, using the keywords such as "Opinion", "Discussion", "Prediction", or "Why do you think ..." to surface subjective discourse.
 
 ---
 
@@ -55,5 +55,5 @@ I would make this classifier genuinely useful by "80% recall" goal for highlight
 - Failure analysis: Plan to give your list of wrong predictions to an AI tool and ask it to identify patterns before you write up your evaluation. Note what you'll look for and how you'll verify the patterns yourself. --->
 
 - **Label stress-testing:** I will give ChatGPT my label definitions and edge case description to generate 5-10 posts that sit at the boundary between two labels. I will change the label definitions or edge case description if the generated posts are hard to classify.
-- **Annotation assistance:** I will use an LLM to pre-label a batch of 50 posts. I will use Gemini to do this and I will track which examples were pre-labeled by adding the "Model_Label" and "Human_Verified_Label" columns.
+- **Annotation assistance:** I will use an ChatGPT to pre-label a batch of 50 posts. When I going to review and correct the pre-assigned labels, I will track which examples were pre-labeled by adding the "Model_Label" and "Human_Verified_Label" columns.
 - **Failure analysis:** After evaluating the model, I will export the posts where the model and I disagreed. I will feed the list of "wrong predictions" into Claude and ask for common patterns that led to these misclassifications. Then, I will verify these patterns to see if they reveal a flaw in my labels.
