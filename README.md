@@ -43,7 +43,7 @@ I chose baseball subreddits because this community contained some posts based on
 ## Fine Tuning Approach
 
 - **Base Model:** distilbert-base-uncased
-- **Training Setup:** The dataset was split into 70%/15%/15% and tokenized all splits. The training was performed on a T4 GPU using the Trainer API, with accuracy as the primary metric to evaluate it, ensuring the model did not regress during training due to overfitting.
+- **Training Setup:** The dataset was split into 70%/15%/15% and tokenized all splits. The training was performed on a T4 GPU for the last 15% of the dataset only (36 posts total) using the Trainer API, with accuracy as the primary metric to evaluate it, ensuring the model did not regress during training due to overfitting.
 - **Hyperparameter Decisions:** I changed 4 things in hyperparamters. I changed num_train_epochs from 3 to 5, decreased the learning_rate to 5e-5, and increased the weight_decay to 0.10 and warmup_steps to 100. For changing the num_train_epochs, it allowed the model more passes to capture any lingustic patterns to improve the accuracy. For changing the learning_rate, it helped the model to converge more efficiently and identified more distinct class boundaries. For changing the weight_decay, it prevented the model from over-relying on a few specific keywords when classifying the posts. For changing the warmup_steps, it allowed the model to spend more time to adapt its internal representations to the baseball-specific vocabulary for more stable training.
 
 ---
@@ -103,13 +103,17 @@ The model correctly predicted the second example post from this sample classfica
 
 ## Model Reflection
 
-
+The model learned about the authorship-based distinctions, which focused the 'voice' of the data. It overfitted to organize brackets and bylines as "News & Official" using contents from professional media. My intention was the original label taxonomy from planning.md that rely on content-based distinctions. For "News & Official" label, the definition was the updates from official baseball news. The model missed the distinction between 'inquiry' and 'report' as capturing the subjective discussions and question-based posts as "News & Official". For the future, I have to align the model with my intension by giving more examples on hard edge cases or more examples on "Discussions & Opinions" label.
 
 ---
 
 ## Spec Reflection
 
+**One way the spec helped you during implementation:**
+The spec helped me during implementation by referencing the label taxonomy and hard edge cases to collect the data and running the baseline and fine-tuning model to see the metrics. Pre-labeling also helped me to write some notes on edge cases for some posts.
 
+**One way your implementation diverged from the spec, and why:**
+My implementation was diverged from the spec by misclassification on "Discussions & Opinions" label mostly on fine-tuning model because I got a 0.00 for the f1-score result first, which shows that the model did not understand the boundaries between this label and other 3 labels. I changed some of the hyperparamters that I mentioned on the Fine-Tuning Approach section above later, but I needed to redefine this label and example post to let the model learn all of the boundaries, which also improved the f1-score for the fine-tuning model.
 
 ---
 
@@ -117,12 +121,12 @@ The model correctly predicted the second example post from this sample classfica
 
 **Instance 1**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave ChatGPT my first 50 of 240 posts to pre-label them using my labels, label definitions, and hard edge cases, and asked to generate 5-10 posts that sit at the boundary between two labels.
+- *What it produced:* ChatGPT classified 50 posts using my label names and mentioned some posts for difficult cases. It also generated 10 posts, and each post has two labels that can sit at the boundary, expected label, and explanation of why it is difficult to classify.
+- *What I changed or overrode:* I labeled all of the posts, including the 50 pre-labeled posts. I also redefined the "Discussions & Opinions" label for adding questions and hypotheses.
 
 **Instance 2**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave Claude the posts that are predicted wrong by fine-tuning model and asked for the patterns that led to misclassifications.
+- *What it produced:* It produced the patterns of misclassifications and any actionable fixes to produce good data.
+- *What I changed or overrode:* I changed the hyperparameters of the fine-tuning model. I also redefined the "Facts & Analysis" label for adding in-game events without video clips, and changed the examples for "Discussions & Opinions" label.
