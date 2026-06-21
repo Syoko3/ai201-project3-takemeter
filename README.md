@@ -59,6 +59,7 @@ The prompt I used was to say to the model that you are classifying the posts fro
 **Model Per-Class Metrics:**
 
 - Model 1: llama-3.3-70b-versatile (Overall Accuracy: 0.861)
+
 | Label | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
 | Media & Highlights | 1.00 | 0.94 | 0.97 | 18 |
@@ -67,6 +68,7 @@ The prompt I used was to say to the model that you are classifying the posts fro
 | Discussions & Opinions | 0.50 | 0.33 | 0.40 | 3 |
 
 - Model 2: distilbert-base-uncased (Overall Accuracy: 0.889)
+
 | Label | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
 | Media & Highlights | 0.95 | 1.00 | 0.97 | 18 |
@@ -81,7 +83,7 @@ The prompt I used was to say to the model that you are classifying the posts fro
 **Wrong Predictions & Analysis:**
 
 | Post | Predicted Label | Confidence Score | Correct Label | Analysis |
-|------|---------------------|---------------------|---------|---------------------|--------------------|
+|------|---------------------|---------|---------------------|-----------------------|
 | [Kowatsch] Julio Rodriguez exits the game before the top of the seventh. Victor Robles moves to center field and Rob Refsnyder in at right. | Media & Highlights | 0.98 | News & Official | Gameplay-action verbs overpowered every other cue. |
 | It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 | Discussions & Opinions | News-topic vocabulary outweighed the speculation framing. |
 | [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,... | News & Official | 0.90 | Discussions & Opinions | The bracketed byline mostly showed as "News & Official" since bylines appear accross News. |
@@ -95,7 +97,7 @@ The prompt I used was to say to the model that you are classifying the posts fro
 | It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 |
 
 *One Correct Prediction & Explanation why it is reasonable:*
-The model correctly predicted the second example post from this sample classfications table with a 90% confidence. This is a reasonable prediction because this post mentioned the stats for the player and comparing these stats to the players who were in the same team in the past. This showed that the model understood that it showed past historical data along with statistics of the current player.
+The model correctly predicted the second example post from this sample classfications table with a 90% confidence. This is a reasonable prediction because this post identified key statistical indicators ('10+ total bases', 'franchise history') and comparing these stats to the players who were in the same team in the past. This showed that the model understood that it showed past historical data along with statistics of the current player.
 
 ---
 
