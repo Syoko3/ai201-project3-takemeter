@@ -43,14 +43,14 @@ I chose baseball subreddits because this community contained some posts based on
 ## Fine Tuning Approach
 
 - **Base Model:** distilbert-base-uncased
-- **Training Setup:** 
-- **Hyperparameter Decisions:** I changed 4 things in hyperparamters. I changed num_train_epochs from 3 to 5, decreased the learning_rate to 5e-5, and increased the weight_decay to 0.10 and warmup_steps to 100.
+- **Training Setup:** The dataset was split into 70%/15%/15% and tokenized all splits. The training was performed on a T4 GPU using the Trainer API, with accuracy as the primary metric to evaluate it, ensuring the model did not regress during training due to overfitting.
+- **Hyperparameter Decisions:** I changed 4 things in hyperparamters. I changed num_train_epochs from 3 to 5, decreased the learning_rate to 5e-5, and increased the weight_decay to 0.10 and warmup_steps to 100. For changing the num_train_epochs, it allowed the model more passes to capture any lingustic patterns to improve the accuracy. For changing the learning_rate, it helped the model to converge more efficiently and identified more distinct class boundaries. For changing the weight_decay, it prevented the model from over-relying on a few specific keywords when classifying the posts. For changing the warmup_steps, it allowed the model to spend more time to adapt its internal representations to the baseball-specific vocabulary for more stable training.
 
 ---
 
 ## Baseline Description
 
-The prompt I used was to say to the model that you are classifying the posts from baseball subreddits using the four labels I defined from the Labels section of planning.md. For the examples, I used the example post #1 from "Media & Highlights" and "News & Official" each, and the example post #2 from "Facts & Analysis" and "Discussions & Opinions" each. The results were collected by 
+The prompt I used was to say to the model that you are classifying the posts from baseball subreddits using the four labels I defined from the Labels section of planning.md. I redefined the labels by adding questions and hypotheses for "Discussions & Opinions" label, and saying no video clips for "Facts & Analysis" label to improve the overall accuracy of the baseline model. For the examples, I used the example post #1 from "Media & Highlights" and "News & Official" each, and the example post #2 from "Facts & Analysis" and "Discussions & Opinions" each. The results were collected by passing the test subset of the dataset through the classify_with_groq() function, which utilized the llama-3.3-70b-versatile model. 
 
 ---
 
@@ -80,21 +80,22 @@ The prompt I used was to say to the model that you are classifying the posts fro
 
 **Wrong Predictions & Analysis:**
 
-| Post | Analysis |
-|------|--------------------|
-|  |  |
-|  |  |
-|  |  |
+| Post | Predicted Label | Confidence Score | Correct Label | Analysis |
+|------|---------------------|---------------------|---------|---------------------|--------------------|
+| [Kowatsch] Julio Rodriguez exits the game before the top of the seventh. Victor Robles moves to center field and Rob Refsnyder in at right. | Media & Highlights | 0.98 | News & Official | Gameplay-action verbs overpowered every other cue. |
+| It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 | Discussions & Opinions | News-topic vocabulary outweighed the speculation framing. |
+| [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,... | News & Official | 0.90 | Discussions & Opinions | The bracketed byline mostly showed as "News & Official" since bylines appear accross News. |
+| [CloseCallSports] Explains the "Contreras Rule" in relation to José Caballero's pitch clock "antics" and warning given by ump in Sunday's game against the Blue Jays | News & Official | 0.89 | Facts & Analysis | The bracketed byline mostly showed as "News & Official" since bylines appear accross News. |
 
 **Sample Classifications:**
-| Post | Model 1 Prediction | Model 1 Confidence | Model 2 Prediction | Model 2 Confidence |
-|------|--------------------|--------------------|--------------------|--------------------|
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| Post | Predicted Label | Confidence Score |
+|------|---------------------|---------------------|
+| [Highlight] Nathan Lukes hits a solo homer to make it 3-0 for the Jays | Media & Highlights | 0.98 |
+| Kyle Stowers now has 4 games as a Marlin with 10+ total bases, tied with Giancarlo Stanton for the most in franchise history | Facts & Analysis | 0.90 |
+| It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 |
 
 *One Correct Prediction & Explanation why it is reasonable:*
-
+The model correctly predicted the second example post from this sample classfications table with a 90% confidence. This is a reasonable prediction because this post mentioned the stats for the player and comparing these stats to the players who were in the same team in the past. This showed that the model understood that it showed past historical data along with statistics of the current player.
 
 ---
 
@@ -123,57 +124,3 @@ The prompt I used was to say to the model that you are classifying the posts fro
 - *What I gave the AI:*
 - *What it produced:*
 - *What I changed or overrode:*
-
----
-
-## Notes (I will delete later)
-
-🎯 Baseline accuracy: 0.861  (evaluated on 36/36 parseable responses)
-
-Per-class metrics (baseline):
-                        precision    recall  f1-score   support
-
-    Media & Highlights       1.00      0.94      0.97        18
-       News & Official       0.64      0.88      0.74         8
-      Facts & Analysis       1.00      0.86      0.92         7
-Discussions & Opinions       0.50      0.33      0.40         3
-
-              accuracy                           0.86        36
-             macro avg       0.78      0.75      0.76        36
-          weighted avg       0.88      0.86      0.86        36
-
-🎯 Fine-tuned model accuracy: 0.889
-
-Per-class metrics (fine-tuned model):
-                        precision    recall  f1-score   support
-
-    Media & Highlights       0.95      1.00      0.97        18
-       News & Official       0.70      0.88      0.78         8
-      Facts & Analysis       1.00      0.86      0.92         7
-Discussions & Opinions       1.00      0.33      0.50         3
-
-              accuracy                           0.89        36
-             macro avg       0.91      0.77      0.79        36
-          weighted avg       0.91      0.89      0.88        36
-
-Wrong predictions: 4 / 36
-
---- #1 ---
-Text:      [Kowatsch] Julio Rodriguez exits the game before the top of the seventh. Victor Robles moves to center field and Rob Refsnyder in at right.
-True:      News & Official
-Predicted: Media & Highlights  (confidence: 0.98)
-
---- #2 ---
-Text:      It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok
-True:      Discussions & Opinions
-Predicted: News & Official  (confidence: 0.88)
-
---- #3 ---
-Text:      [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,...
-True:      Discussions & Opinions
-Predicted: News & Official  (confidence: 0.90)
-
---- #4 ---
-Text:      [CloseCallSports] Explains the "Contreras Rule" in relation to José Caballero's pitch clock "antics" and warning given by ump in Sunday's game against the Blue Jays
-True:      Facts & Analysis
-Predicted: News & Official  (confidence: 0.89)
