@@ -4,7 +4,7 @@
 
 ## Demo Video
 
-Link: 
+Link: https://drive.google.com/file/d/1t8ae90l-y0fZANtIygtY3yPFKkO56dNI/view?usp=sharing
 
 ---
 
@@ -86,15 +86,15 @@ The prompt I used was to say to the model that you are classifying the posts fro
 |------|---------------------|---------|---------------------|-----------------------|
 | [Kowatsch] Julio Rodriguez exits the game before the top of the seventh. Victor Robles moves to center field and Rob Refsnyder in at right. | Media & Highlights | 0.98 | News & Official | Gameplay-action verbs overpowered every other cue. |
 | It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 | Discussions & Opinions | News-topic vocabulary outweighed the speculation framing. |
-| [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,... | News & Official | 0.90 | Discussions & Opinions | The bracketed byline mostly showed as "News & Official" since bylines appear accross News. |
-| [CloseCallSports] Explains the "Contreras Rule" in relation to José Caballero's pitch clock "antics" and warning given by ump in Sunday's game against the Blue Jays | News & Official | 0.89 | Facts & Analysis | The bracketed byline mostly showed as "News & Official" since bylines appear accross News. |
+| [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,... | News & Official | 0.90 | Discussions & Opinions | The bracketed byline mostly showed as "News & Official" since bylines appear across News. |
+| [CloseCallSports] Explains the "Contreras Rule" in relation to José Caballero's pitch clock "antics" and warning given by ump in Sunday's game against the Blue Jays | News & Official | 0.89 | Facts & Analysis | The bracketed byline mostly showed as "News & Official" since bylines appear across News. |
 
 **Sample Classifications:**
 | Post | Predicted Label | Confidence Score |
 |------|---------------------|---------------------|
 | [Highlight] Nathan Lukes hits a solo homer to make it 3-0 for the Jays | Media & Highlights | 0.98 |
 | Kyle Stowers now has 4 games as a Marlin with 10+ total bases, tied with Giancarlo Stanton for the most in franchise history | Facts & Analysis | 0.90 |
-| It appears the 2026 MLB All-Star Game hats have leaked thru an ad on TikTok | News & Official | 0.88 |
+| [Matheson] Anthony Santander is scheduled to start hitting "either this weekend or next", John Schneider said. So, sometime soon. "There's a shot he could definitely be a factor." Long road from here,... | News & Official | 0.90 |
 
 *One Correct Prediction & Explanation why it is reasonable:*
 The model correctly predicted the second example post from this sample classfications table with a 90% confidence. This is a reasonable prediction because this post identified key statistical indicators ('10+ total bases', 'franchise history') and comparing these stats to the players who were in the same team in the past. This showed that the model understood that it showed past historical data along with statistics of the current player.
